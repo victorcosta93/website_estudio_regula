@@ -91,7 +91,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <img src="Logo - PNG-11.jpg" alt="Studio Regula Logo" class="h-11 w-auto object-contain">
+                    <img src="imagens/logotipo.png" alt="Studio Regula Logo" style="height: 150px; width: auto;" class="object-contain">
                 </div>
                 <div class="hidden md:flex space-x-8 font-medium tracking-wide">
                     <a href="#home" class="hover:text-offWhite/80 transition-colors">Início</a>
@@ -102,7 +102,7 @@
                     <a href="#localizacao" class="hover:text-offWhite/80 transition-colors">Localização</a>
                 </div>
                 <div class="hidden md:block">
-                    <a href="#contato" class="bg-offWhite text-petroleo hover:bg-white px-6 py-2.5 rounded-xl font-bold tracking-wide transition shadow-md">Análise Gratuita</a>
+                    <a href="https://wa.me/5513991211335" target="_blank" class="bg-offWhite text-petroleo hover:bg-white px-6 py-2.5 rounded-xl font-bold tracking-wide transition shadow-md">Análise Gratuita</a>
                 </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white hover:text-offWhite focus:outline-none transition-colors cursor-pointer">
@@ -118,14 +118,15 @@
             <a href="#sobre" class="block text-white hover:text-offWhite/80 py-2">Quem Somos</a>
             <a href="#equipe" class="block text-white hover:text-offWhite/80 py-2">Equipe</a>
             <a href="#localizacao" class="block text-white hover:text-offWhite/80 py-2">Localização</a>
-            <a href="#contato" class="block bg-offWhite text-center text-petroleo py-2.5 rounded-xl font-bold">Análise Gratuita</a>
+            <a href="https://wa.me/5513991211335" class="block bg-offWhite text-center text-petroleo py-2.5 rounded-xl font-bold">Análise Gratuita</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <section id="home" class="relative min-h-screen flex items-center pt-28 md:pt-36 pb-16 md:pb-24 bg-petroleo text-white overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-cover bg-center md:bg-right bg-no-repeat" style="background-image: url('image_b0db3d.jpg');"></div>
+            <!-- Substitua 'sua-imagem.jpg' pelo caminho correto do seu arquivo -->
+            <div class="absolute inset-0 bg-cover bg-center md:bg-right bg-no-repeat" style="background-image: url('imagens/slide.png');"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-petroleo via-petroleo via-35% md:via-45% lg:via-50% to-transparent hidden md:block"></div>
             <div class="absolute inset-0 bg-petroleo/85 md:hidden"></div>
         </div>
@@ -143,15 +144,36 @@
                     
                     <p class="text-sm md:text-lg text-slate-200 leading-relaxed font-light max-w-2xl">
                         Aprove seu Alvará de Construção, Habite-se, e regularize pendências fiscais, físicas e documentais com o corpo técnico especializado do Studio Regula na Baixada Santista.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                        <a href="#contato" class="bg-offWhite text-petroleo hover:bg-white text-center px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 shadow-lg tracking-wide hover:-translate-y-0.5">
-                            Analisar Meu Imóvel
-                        </a>
-                        <a href="https://wa.me/seunumeroaqui" target="_blank" class="border border-white/20 hover:border-white text-center text-white px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm hover:-translate-y-0.5">
-                            <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i> Falar no WhatsApp
-                        </a>
+                    </p>              
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-3xl">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/10 p-2.5 rounded-xl text-emerald-400">
+                                <i class="fa-solid fa-file-circle-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Aprovação Rápida</h4>
+                                <p class="text-[11px] text-slate-400 font-light">Processos assertivos sem perda de tempo</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/10 p-2.5 rounded-xl text-emerald-400">
+                                <i class="fa-solid fa-shield-halved text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Segurança Jurídica</h4>
+                                <p class="text-[11px] text-slate-400 font-light">Patrimônio totalmente protegido</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/10 p-2.5 rounded-xl text-emerald-400">
+                                <i class="fa-solid fa-map-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Foco na Baixada</h4>
+                                <p class="text-[11px] text-slate-400 font-light">Especialistas nas prefeituras locais</p>
+                            </div>
+                        </div>
+                    </div>                        
                     </div>
                 </div>
             </div>
@@ -329,59 +351,22 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato" class="py-20 bg-offWhite">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 md:p-12 rounded-2xl shadow-md border border-slate-100">
-            <div class="text-center mb-8">
-                <img src="Logo - PNG-13.jpg" alt="Studio Regula Logo Colorido" class="h-14 w-auto mx-auto mb-6 object-contain">
-                <h2 class="text-2xl md:text-3xl font-bold font-title text-petroleo">Sua calçada ou imóvel precisam de análise?</h2>
-                <p class="text-slate-600 text-sm mt-2">Preencha os dados abaixo e nossa equipe técnica entrará em contato para um diagnóstico inicial.</p>
-            </div>
-            <form id="contactForm" class="space-y-6">
-                <div>
-                    <label class="block text-xs font-semibold uppercase mb-2">Nome Completo</label>
-                    <input type="text" id="name" required class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo">
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase mb-2">E-mail</label>
-                        <input type="email" id="email" required class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase mb-2">Município</label>
-                        <select id="city" class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo">
-                            <option value="Santos">Santos</option>
-                            <option value="São Vicente">São Vicente</option>
-                            <option value="Praia Grande">Praia Grande</option>
-                            <option value="Guarujá">Guarujá</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase mb-2">Mensagem</label>
-                    <textarea id="message" rows="4" class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-petroleo hover:bg-petroleoLight text-white font-bold py-4 rounded-xl uppercase font-title cursor-pointer transition shadow-md">Enviar Solicitação</button>
-            </form>
-        </div>
-    </section>
+    </section>    
 
     <!-- FOOTER COM POSIÇÕES INVERTIDAS (REDE SOCIAL NO CENTRO, MENU A DIREITA) -->
     <footer class="bg-regulaDark text-slate-400 py-12 border-t border-petroleo">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-between">
             <div class="flex flex-col items-center md:items-start">
-                <img src="Logo - PNG-11.jpg" alt="Studio Regula Logo Rodapé" class="h-9 w-auto object-contain">
+                <img src="imagens/logotipo.png" alt="Studio Regula Logo" style="height: 150px; width: auto;" class="object-contain">
                 <p class="text-[11px] text-slate-500 mt-3">&copy; 2026 Studio Regula Engenharia Legal. Todos os direitos reservados.</p>
             </div>
             
             <div class="flex flex-col items-center gap-3">
                 <span class="text-xs uppercase tracking-wider font-title text-slate-500">Redes Sociais e Contato</span>
                 <div class="flex space-x-4 text-lg">
-                    <a href="https://facebook.com/seuperfil" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://instagram.com/seuperfil" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="mailto:contato@studioregula.com.br" class="text-slate-400 hover:text-emerald-400 transition-colors" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://instagram.com/studioregula" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="mailto:studioregula.arq@gmail.com" class="text-slate-400 hover:text-emerald-400 transition-colors" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -393,7 +378,7 @@
                     <a href="#sobre" class="hover:text-white transition-colors">Quem Somos</a>
                     <a href="#equipe" class="hover:text-white transition-colors">Equipe</a>
                     <a href="#localizacao" class="hover:text-white transition-colors">Localização</a>
-                    <a href="#contato" class="hover:text-white transition-colors">Contato</a>
+                    <a href="https://wa.me/5513991211335" target="_blank" class="hover:text-white transition-colors">Contato</a>
                 </div>
             </div>
         </div>
@@ -414,7 +399,7 @@
     </script>
 
     <!-- BOTÃO FLUTUANTE WHATSAPP -->
-    <a href="https://wa.me/seunumeroaqui" target="_blank" class="fixed bottom-6 right-6 bg-[#184743] hover:bg-[#0C2E2B] text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 z-50 flex items-center justify-center w-16 h-16 border border-white/10 cursor-pointer" title="Falar via WhatsApp" aria-label="Falar via WhatsApp">
+    <a href="https://wa.me/5513991211335" target="_blank" class="fixed bottom-6 right-6 bg-[#184743] hover:bg-[#0C2E2B] text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 z-50 flex items-center justify-center w-16 h-16 border border-white/10 cursor-pointer" title="Falar via WhatsApp" aria-label="Falar via WhatsApp">
         <i class="fa-brands fa-whatsapp text-3xl text-emerald-400"></i>
     </a>
 
