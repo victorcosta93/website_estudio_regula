@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Regula | Arquitetura e Regularização de Obras</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        petroleo: '#0C2E2B',
+                        petroleoLight: '#184743',
+                        offWhite: '#F4F6F5',
+                        regulaDark: '#0A1413',
+                    },
+                    fontFamily: {
+                        title: ['Roboto', 'sans-serif'],
+                        body: ['IBM Plex Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Estilos de Acessibilidade (Alto Contraste e Tamanho de Fonte) -->
+    <style>
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #FFFF00 !important;
+        }
+        body.high-contrast section, 
+        body.high-contrast nav, 
+        body.high-contrast footer, 
+        body.high-contrast div, 
+        body.high-contrast .bg-white, 
+        body.high-contrast .bg-offWhite {
+            background-color: #000000 !important;
+            color: #FFFF00 !important;
+            border-color: #FFFF00 !important;
+        }
+        body.high-contrast a, body.high-contrast span, body.high-contrast p, body.high-contrast h1, body.high-contrast h2, body.high-contrast h3, body.high-contrast h4, body.high-contrast li {
+            color: #FFFF00 !important;
+        }
+        body.high-contrast button, body.high-contrast input, body.high-contrast select, body.high-contrast textarea {
+            background-color: #222222 !important;
+            color: #FFFF00 !important;
+            border: 2px solid #FFFF00 !important;
+        }
+
+        /* Classes de Escala de Fonte */
+        body.font-sm { font-size: 14px; }
+        body.font-md { font-size: 16px; }
+        body.font-lg { font-size: 19px; }
+        body.font-xl { font-size: 22px; }
+    </style>
+</head>
+<body class="bg-offWhite text-regulaDark font-body antialiased font-md pt-9">
+
+    <!-- BARRA DE ACESSIBILIDADE FIXA NO TOPO -->
+    <div class="fixed top-0 left-0 w-full bg-regulaDark text-slate-300 py-1.5 px-4 text-xs border-b border-white/10 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <span class="font-title tracking-wider uppercase text-[10px] text-emerald-400">
+                <i class="fa-solid fa-universal-access mr-1"></i> Acessibilidade:
+            </span>
+            <div class="flex items-center gap-2 font-title">
+                <button onclick="changeFontSize('decrease')" class="bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded transition cursor-pointer" title="Diminuir Fonte">A-</button>
+                <button onclick="changeFontSize('reset')" class="bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded transition cursor-pointer" title="Tamanho Padrão">A</button>
+                <button onclick="changeFontSize('increase')" class="bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded transition cursor-pointer" title="Aumentar Fonte">A+</button>
+                <span class="text-white/20">|</span>
+                <button onclick="toggleContrast()" class="bg-white/15 hover:bg-white/25 px-3 py-1 rounded transition flex items-center gap-1.5 text-emerald-300 font-semibold cursor-pointer" title="Alternar Alto Contraste">
+                    <i class="fa-solid fa-circle-half-stroke"></i> Contraste
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAV BAR -->
+    <nav class="fixed w-full bg-petroleo/95 backdrop-blur text-white z-40 border-b border-petroleoLight/40 transition-all duration-300" style="top: 33px;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="Logo - PNG-11.jpg" alt="Studio Regula Logo" class="h-11 w-auto object-contain">
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium tracking-wide">
+                    <a href="#home" class="hover:text-offWhite/80 transition-colors">Início</a>
+                    <a href="#dores" class="hover:text-offWhite/80 transition-colors">Problemas</a>
+                    <a href="#servicos" class="hover:text-offWhite/80 transition-colors">Soluções</a>
+                    <a href="#sobre" class="hover:text-offWhite/80 transition-colors">Quem Somos</a>
+                    <a href="#equipe" class="hover:text-offWhite/80 transition-colors">Equipe</a>
+                    <a href="#localizacao" class="hover:text-offWhite/80 transition-colors">Localização</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#contato" class="bg-offWhite text-petroleo hover:bg-white px-6 py-2.5 rounded-xl font-bold tracking-wide transition shadow-md">Análise Gratuita</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-offWhite focus:outline-none transition-colors cursor-pointer">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-petroleo border-b border-petroleoLight px-4 pt-2 pb-4 space-y-3 shadow-xl">
+            <a href="#home" class="block text-white hover:text-offWhite/80 py-2">Início</a>
+            <a href="#dores" class="block text-white hover:text-offWhite/80 py-2">Problemas</a>
+            <a href="#servicos" class="block text-white hover:text-offWhite/80 py-2">Soluções</a>
+            <a href="#sobre" class="block text-white hover:text-offWhite/80 py-2">Quem Somos</a>
+            <a href="#equipe" class="block text-white hover:text-offWhite/80 py-2">Equipe</a>
+            <a href="#localizacao" class="block text-white hover:text-offWhite/80 py-2">Localização</a>
+            <a href="#contato" class="block bg-offWhite text-center text-petroleo py-2.5 rounded-xl font-bold">Análise Gratuita</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center pt-28 md:pt-36 pb-16 md:pb-24 bg-petroleo text-white overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cover bg-center md:bg-right bg-no-repeat" style="background-image: url('image_b0db3d.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-petroleo via-petroleo via-35% md:via-45% lg:via-50% to-transparent hidden md:block"></div>
+            <div class="absolute inset-0 bg-petroleo/85 md:hidden"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-8 space-y-6">
+                    <span class="inline-block text-offWhite font-semibold tracking-wider uppercase bg-white/10 px-4 py-1.5 rounded-full text-xs font-title">
+                        Engenharia Legal e de Segurança
+                    </span>
+                    
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black font-title tracking-tight leading-tight text-white drop-shadow-sm">
+                        REGULARIZAÇÃO DE OBRAS: <br class="hidden md:inline"><span class="text-emerald-400">SEU IMÓVEL LEGAL,</span> SEM COMPLICAÇÕES.
+                    </h1>
+                    
+                    <p class="text-sm md:text-lg text-slate-200 leading-relaxed font-light max-w-2xl">
+                        Aprove seu Alvará de Construção, Habite-se, e regularize pendências fiscais, físicas e documentais com o corpo técnico especializado do Studio Regula na Baixada Santista.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <a href="#contato" class="bg-offWhite text-petroleo hover:bg-white text-center px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 shadow-lg tracking-wide hover:-translate-y-0.5">
+                            Analisar Meu Imóvel
+                        </a>
+                        <a href="https://wa.me/seunumeroaqui" target="_blank" class="border border-white/20 hover:border-white text-center text-white px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm hover:-translate-y-0.5">
+                            <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i> Falar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO PROBLEMAS (DORES) - TEXTOS COMPLETOS -->
+    <section id="dores" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="text-petroleo font-bold uppercase tracking-widest text-xs font-title">Seu Imóvel</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-title text-petroleo mt-2">Você está passando por algum destes problemas?</h2>
+                <p class="mt-4 text-base text-slate-600">A ausência da documentação regularizada do seu imóvel perante os órgãos competentes traz riscos iminentes, desde multas pesadas até a impossibilidade de realizar transações comerciais seguras.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-offWhite p-8 rounded-2xl border border-slate-100 shadow-sm transition-all">
+                    <div class="text-petroleo bg-petroleo/5 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-house-circle-exclamation"></i></div>
+                    <h3 class="text-xl font-bold font-title text-petroleo">Imóvel Ampliado ou Modificado Sem Registro</h3>
+                    <p class="mt-3 text-sm text-slate-600 font-light">Você construiu, reformou ou ampliou a sua casa ou comércio, mas a planta aprovada na Prefeitura continua antiga ou inexistente, gerando divergência entre o físico e o legal.</p>
+                </div>
+                <div class="bg-offWhite p-8 rounded-2xl border border-slate-100 shadow-sm transition-all">
+                    <div class="text-petroleo bg-petroleo/5 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-file-circle-question"></i></div>
+                    <h3 class="text-xl font-bold font-title text-petroleo">Impossibilidade de Financiamento ou Venda</h3>
+                    <p class="mt-3 text-sm text-slate-600 font-light">O comprador encontrou o imóvel dos sonhos, mas o banco negou o financiamento imobiliário por falta de Habite-se ou certidões atualizadas na Matriz do Registro de Imóveis.</p>
+                </div>
+                <div class="bg-offWhite p-8 rounded-2xl border border-slate-100 shadow-sm transition-all">
+                    <div class="text-petroleo bg-petroleo/5 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h3 class="text-xl font-bold font-title text-petroleo">Multas, Notificações e Riscos Fiscais</h3>
+                    <p class="mt-3 text-sm text-slate-600 font-light">Recebeu notificação de fiscalização municipal, embargo de obra ou IPTU cobrado incorretamente devido à falta de atualização da área construída real do terreno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO SOLUÇÕES (SERVIÇOS) - TEXTOS COMPLETOS -->
+    <section id="servicos" class="py-20 bg-petroleo text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-offWhite/70 font-semibold uppercase tracking-wider text-xs font-title">Segurança Jurídica</span>
+                    <h2 class="text-3xl md:text-4xl font-bold font-title mt-2">Nossas Soluções Urbanísticas Completas</h2>
+                    <p class="text-slate-300 text-sm mt-2 max-w-xl">Atuação pontual ou integrada em todas as fases da engenharia legal para desatar nós burocráticos na Baixada Santista.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-petroleoLight/40 p-6 rounded-2xl border border-white/5">
+                    <i class="fa-solid fa-store text-emerald-400 text-2xl mb-4 block"></i>
+                    <h4 class="text-lg font-bold font-title mb-2">Comerciais e Corporativos</h4>
+                    <p class="text-slate-300 text-xs font-light leading-relaxed">Adequação técnica de estabelecimentos comerciais, escritórios e indústrias para estarem em plena conformidade com as exigências legais e de acessibilidade.</p>
+                </div>
+                <div class="bg-petroleoLight/40 p-6 rounded-2xl border border-white/5">
+                    <i class="fa-solid fa-file-contract text-emerald-400 text-2xl mb-4 block"></i>
+                    <h4 class="text-lg font-bold font-title mb-2">Alvará de Funcionamento e Licenças</h4>
+                    <p class="text-slate-300 text-xs font-light leading-relaxed">Assessoria completa na obtenção de licenças de funcionamento, AVCB (Corpo de Bombeiros) e vistorias técnicas indispensáveis para abrir ou manter sua empresa ativa.</p>
+                </div>
+                <div class="bg-petroleoLight/40 p-6 rounded-2xl border border-white/5">
+                    <i class="fa-solid fa-house-chimney-user text-emerald-400 text-2xl mb-4 block"></i>
+                    <h4 class="text-lg font-bold font-title mb-2">Residenciais e Habitacionais</h4>
+                    <p class="text-slate-300 text-xs font-light leading-relaxed">Foco na segurança documental, averbação de construções e valorização patrimonial do seu bem imóvel, permitindo reformas tranquilas e venda facilitada.</p>
+                </div>
+                <div class="bg-petroleoLight/40 p-6 rounded-2xl border border-white/5">
+                    <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-4 block"></i>
+                    <h4 class="text-lg font-bold font-title mb-2">Aprovação em Órgãos Públicos</h4>
+                    <p class="text-slate-300 text-xs font-light leading-relaxed">Atuação direta como braço técnico nos órgãos municipais e estaduais, agilizando despachos, destravando processos parados e reduzindo prazos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUEM SOMOS (ESCRITÓRIO) - TEXTOS ATUALIZADOS -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-petroleo font-bold uppercase tracking-widest text-xs font-title">O Escritório</span>
+                    <h2 class="text-3xl md:text-4xl font-bold font-title text-petroleo">Estabilidade e segurança patrimonial sem complicação.</h2>
+                    <p class="text-slate-600 font-light text-sm leading-relaxed">
+                        O Studio Regula nasceu para mitigar um dos maiores riscos do mercado de arquitetura e construção: a falta de conformidade legal. Sob o comando de engenharia jurídica qualificada, unificamos a análise física com o rigor processual burocrático.
+                    </p>
+                    <blockquote class="border-l-4 border-petroleo bg-offWhite p-4 italic text-slate-700 font-medium text-sm rounded-r-2xl">
+                        "Sua obra pode estar linda por fora, mas se não estiver regularizada, ela pode virar um problema sério."
+                    </blockquote>
+                </div>
+                <div class="bg-gradient-to-br from-petroleo to-regulaDark p-8 md:p-10 rounded-2xl text-white space-y-6 shadow-xl">
+                    <h3 class="text-xl font-bold font-title border-b border-white/10 pb-3">Por que escolher o Studio Regula?</h3>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-400 mr-3 mt-1"></i> <span><strong>Know-how regional aprofundado:</strong> Conhecimento prático das leis de zoneamento e código de obras específico de cada município da Baixada Santista.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-400 mr-3 mt-1"></i> <span><strong>Equipe multidisciplinar:</strong> Arquitetos e engenheiros trabalhando em conjunto para garantir que o projeto seja esteticamente viável e legalmente infalível.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-400 mr-3 mt-1"></i> <span><strong>Transparência total:</strong> Acompanhamento em tempo real de todas as etapas do processo, sem surpresas ou taxas ocultas.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESTATÍSTICAS -->
+    <section id="estatisticas" class="py-16 bg-petroleo text-white border-t border-b border-petroleoLight/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <h3 class="text-3xl md:text-4xl font-black font-title"><span class="counter" data-target="350">0</span>+</h3>
+                    <p class="text-xs uppercase mt-1">Alvarás Emitidos</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-3xl md:text-4xl font-black font-title"><span class="counter" data-target="500">0</span>+</h3>
+                    <p class="text-xs uppercase mt-1">Clientes Atendidos</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-3xl md:text-4xl font-black font-title"><span class="counter" data-target="98">0</span>%</h3>
+                    <p class="text-xs uppercase mt-1">Aprovação</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-3xl md:text-4xl font-black font-title"><span class="counter" data-target="8">0</span>+</h3>
+                    <p class="text-xs uppercase mt-1">Anos de Mercado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPE - TEXTOS COMPLETOS -->
+    <section id="equipe" class="py-20 bg-offWhite">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-petroleo font-bold uppercase tracking-widest text-xs font-title">Especialistas</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-title text-petroleo mt-2">Nossa Equipe Técnica</h2>
+                <p class="mt-4 text-base text-slate-600">Profissionais devidamente registrados nos conselhos de classe (CAU e CREA), com larga experiência em aprovação de projetos e consultoria imobiliária.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                    <div class="w-32 h-32 rounded-2xl bg-petroleo/10 overflow-hidden flex-shrink-0 flex items-center justify-center text-petroleo">
+                        <img src="tainah.jpg" alt="Tainah Perrotta" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden w-full h-full items-center justify-center text-4xl text-petroleo"><i class="fa-solid fa-user-tie"></i></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-bold font-title text-petroleo">Tainah Perrotta</h3>
+                        <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider font-title">Arquiteta e Urbanista</p>
+                        <p class="text-xs text-slate-600 font-light leading-relaxed">Especialista em planejamento urbanístico, reabilitação de edificações e compatibilização detalhada de projetos arquitetônicos com as normativas e restrições municipais vigentes.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                    <div class="w-32 h-32 rounded-2xl bg-petroleo/10 overflow-hidden flex-shrink-0 flex items-center justify-center text-petroleo">
+                        <img src="lucas.jpg" alt="Lucas Domingues" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden w-full h-full items-center justify-center text-4xl text-petroleo"><i class="fa-solid fa-user-gear"></i></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-bold font-title text-petroleo">Lucas Domingues</h3>
+                        <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider font-title">Engenheiro Civil / Legal</p>
+                        <p class="text-xs text-slate-600 font-light leading-relaxed">Focado em engenharia legal, regularização imobiliária complexa, obtenção de Habite-se, laudos técnicos estruturais e agilização processual perante os órgãos de controle público.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO - TEXTOS COMPLETOS -->
+    <section id="localizacao" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-petroleo font-bold uppercase tracking-widest text-xs font-title">Onde Estamos</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-title text-petroleo mt-2">Visite o Nosso Studio</h2>
+                <p class="mt-4 text-base text-slate-600">Venha tomar um café conosco para discutirmos pessoalmente as demandas e o histórico legal do seu imóvel em nossa sede localizada no coração de Santos.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-offWhite p-6 md:p-8 rounded-2xl border border-slate-200/60">
+                <div class="lg:col-span-4 space-y-6">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 font-title">Endereço Principal</h4>
+                        <p class="text-sm font-semibold text-petroleo mt-1">Smart Center - Rua José Caballero, nº 15, sala 7</p>
+                        <p class="text-sm text-slate-700 font-light">Bairro Gonzaga - Santos - SP</p>
+                        <p class="text-xs text-slate-500 mt-2 font-light">Atendimento de segunda a sexta-feira, em horário comercial. Agende sua visita com antecedência para um atendimento exclusivo.</p>
+                    </div>
+                    <a href="https://maps.google.com/?q=Rua+Jose+Caballero+15+Santos" target="_blank" class="w-full bg-petroleo hover:bg-petroleoLight text-white font-bold py-3.5 px-6 rounded-xl text-center block text-xs uppercase font-title cursor-pointer transition shadow-md">Como Chegar no Mapa</a>
+                </div>
+                <div class="lg:col-span-8 h-[380px] w-full rounded-xl overflow-hidden border border-slate-200 shadow-inner">
+                    <iframe width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3647.3879079943896!2d-46.33315652378877!3d-23.963499278529243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce03b5161ba057%3A0xc3bc068779603f90!2sR.%20Jos%C3%A9%20Caballero%2C%2015%20-%20Gonzaga%2C%20Santos%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="py-20 bg-offWhite">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 md:p-12 rounded-2xl shadow-md border border-slate-100">
+            <div class="text-center mb-8">
+                <img src="Logo - PNG-13.jpg" alt="Studio Regula Logo Colorido" class="h-14 w-auto mx-auto mb-6 object-contain">
+                <h2 class="text-2xl md:text-3xl font-bold font-title text-petroleo">Sua calçada ou imóvel precisam de análise?</h2>
+                <p class="text-slate-600 text-sm mt-2">Preencha os dados abaixo e nossa equipe técnica entrará em contato para um diagnóstico inicial.</p>
+            </div>
+            <form id="contactForm" class="space-y-6">
+                <div>
+                    <label class="block text-xs font-semibold uppercase mb-2">Nome Completo</label>
+                    <input type="text" id="name" required class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase mb-2">E-mail</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase mb-2">Município</label>
+                        <select id="city" class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo">
+                            <option value="Santos">Santos</option>
+                            <option value="São Vicente">São Vicente</option>
+                            <option value="Praia Grande">Praia Grande</option>
+                            <option value="Guarujá">Guarujá</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase mb-2">Mensagem</label>
+                    <textarea id="message" rows="4" class="w-full px-4 py-3 bg-offWhite border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-petroleo"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-petroleo hover:bg-petroleoLight text-white font-bold py-4 rounded-xl uppercase font-title cursor-pointer transition shadow-md">Enviar Solicitação</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER COM POSIÇÕES INVERTIDAS (REDE SOCIAL NO CENTRO, MENU A DIREITA) -->
+    <footer class="bg-regulaDark text-slate-400 py-12 border-t border-petroleo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-between">
+            <div class="flex flex-col items-center md:items-start">
+                <img src="Logo - PNG-11.jpg" alt="Studio Regula Logo Rodapé" class="h-9 w-auto object-contain">
+                <p class="text-[11px] text-slate-500 mt-3">&copy; 2026 Studio Regula Engenharia Legal. Todos os direitos reservados.</p>
+            </div>
+            
+            <div class="flex flex-col items-center gap-3">
+                <span class="text-xs uppercase tracking-wider font-title text-slate-500">Redes Sociais e Contato</span>
+                <div class="flex space-x-4 text-lg">
+                    <a href="https://facebook.com/seuperfil" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://instagram.com/seuperfil" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="mailto:contato@studioregula.com.br" class="text-slate-400 hover:text-emerald-400 transition-colors" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center md:items-end">
+                <div class="flex flex-wrap justify-end gap-x-6 gap-y-2 text-xs uppercase tracking-wider font-title font-medium text-slate-400">
+                    <a href="#home" class="hover:text-white transition-colors">Início</a>
+                    <a href="#dores" class="hover:text-white transition-colors">Problemas</a>
+                    <a href="#servicos" class="hover:text-white transition-colors">Soluções</a>
+                    <a href="#sobre" class="hover:text-white transition-colors">Quem Somos</a>
+                    <a href="#equipe" class="hover:text-white transition-colors">Equipe</a>
+                    <a href="#localizacao" class="hover:text-white transition-colors">Localização</a>
+                    <a href="#contato" class="hover:text-white transition-colors">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WIDGET OFICIAL DO VLIBRAS -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Script do VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/seunumeroaqui" target="_blank" class="fixed bottom-6 right-6 bg-[#184743] hover:bg-[#0C2E2B] text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 z-50 flex items-center justify-center w-16 h-16 border border-white/10 cursor-pointer" title="Falar via WhatsApp" aria-label="Falar via WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl text-emerald-400"></i>
+    </a>
+
+    <!-- SCRIPTS DE ACESSIBILIDADE E DINAMISMO -->
+    <script>
+        // Funções para controle do tamanho da fonte
+        const fontSizes = ['font-sm', 'font-md', 'font-lg', 'font-xl'];
+        let currentFontIndex = 1; // Padrão 'font-md'
+
+        function changeFontSize(action) {
+            document.body.classList.remove(...fontSizes);
+            if (action === 'increase' && currentFontIndex < fontSizes.length - 1) {
+                currentFontIndex++;
+            } else if (action === 'decrease' && currentFontIndex > 0) {
+                currentFontIndex--;
+            } else if (action === 'reset') {
+                currentFontIndex = 1;
+            }
+            document.body.classList.add(fontSizes[currentFontIndex]);
+        }
+
+        // Função de Alto Contraste
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // Menu mobile, contadores e modais
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Contadores dinâmicos
+        const counters = document.querySelectorAll('.counter');
+        let activated = false;
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let count = 0;
+                const speed = target / 40; 
+                const updateCount = () => {
+                    count += speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !activated) {
+                    startCounters();
+                    activated = true;
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        const statsSection = document.getElementById('estatisticas');
+        if (statsSection) observer.observe(statsSection);
+
+        // Envio do formulário
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
